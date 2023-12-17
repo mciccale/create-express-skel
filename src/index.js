@@ -1,14 +1,18 @@
 #!/usr/bin/env node
 
 import { stat, mkdir, cp } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { program } from 'commander';
 import inquirer from 'inquirer';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 program
   .name('create-express-skel')
-  .version('1.0.0')
+  .version('1.0.1')
   .option('<project-name>', 'name of the project')
   .option('--ts', 'use TypeScript template (default JavaScript)')
   .option('--eslint', 'configure ESlint')
@@ -27,7 +31,7 @@ async function createProject(projectName, useTs, eslint, initializeGit) {
     }
 
     await mkdir(targetPath);
-    await cp(join(process.cwd(), `${skeletonDir}`), targetPath, {
+    await cp(join(__dirname, `../${skeletonDir}`), targetPath, {
       recursive: true,
     });
 

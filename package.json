@@ -1,6 +1,6 @@
 {
   "name": "create-express-skel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A basic CLI tool to set-up a basic bolierplate for Express.js applications.",
   "type": "module",
   "main": "./src/index.js",
